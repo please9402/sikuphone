@@ -1,1 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#111019">
+<title>SIKU PHONE ♡</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#111019;color:white;font-family:-apple-system,BlinkMacSystemFont,"Arial",sans-serif}
+button{color:white;border:0;cursor:pointer;font:inherit}
+.phone{width:min(100vw,390px);height:min(844px,100dvh);min-height:600px;margin:auto;position:relative;overflow:hidden;background:linear-gradient(155deg,#292536,#111019 65%,#373044)}
+.status{height:42px;padding:14px 24px 0;display:flex;justify-content:space-between;font-size:12px}
+.screen{display:none;height:calc(100% - 42px);padding:20px;flex-direction:column}
+.screen.active{display:flex}
+.lock{justify-content:center;align-items:center;text-align:center;background:radial-gradient(ellipse at 50% 25%,#514663,#211e2c 60%,#111019)}
+.time{font-size:64px;font-weight:200;letter-spacing:-3px}
+.date{color:#ded6eb;margin:8px}
+.avatar{width:142px;height:142px;border-radius:50%;margin:36px auto 16px;background:linear-gradient(135deg,#c4b8e9,#393246);display:grid;place-items:center;font-size:64px;border:2px solid #ffffff55}
+.small{color:#c9bfd7;font-size:13px}
+.pill{padding:13px 22px;border-radius:24px;background:#ffffff20;border:1px solid #ffffff35;margin-top:22px}
+.home{background:linear-gradient(155deg,#514360,#191722 65%,#30283b)}
+.greeting{font-size:25px;font-weight:650;margin:18px 0 6px}
+.widget{padding:18px;border:1px solid #ffffff22;background:#ffffff12;border-radius:22px;margin:15px 0 24px}
+.apps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px 12px}
+.app{background:transparent;text-align:center;font-size:12px}
+.appicon{height:58px;width:58px;border-radius:19px;background:linear-gradient(145deg,#b9a8d8,#685777);display:grid;place-items:center;font-size:27px;margin:0 auto 8px;box-shadow:0 5px 14px #0003}
+.back{align-self:flex-start;background:#ffffff20;border-radius:18px;padding:10px 15px;margin-bottom:20px}
+h2{margin:8px 0 18px;font-size:26px}
+.card{background:#ffffff12;border:1px solid #ffffff22;border-radius:18px;padding:16px;margin-bottom:12px}
+.chatlog{flex:1;overflow:auto;margin-bottom:12px}
+.bubble{padding:11px 14px;background:#ffffff18;border-radius:16px;margin:8px 0;max-width:90%;overflow-wrap:anywhere}
+.me{background:#81709e;margin-left:auto}
+input{width:100%;min-width:0;background:#ffffff15;color:white;border:1px solid #ffffff35;border-radius:15px;padding:12px;font-size:15px}
+.sendrow{display:flex;gap:8px}
+.sendrow button{background:#8875a6;border-radius:14px;padding:0 15px}
+.album{font-size:48px;text-align:center;padding:35px 0}
+.nav{margin-top:auto;text-align:center;color:#bfb4cf;font-size:12px;padding-top:18px}
+</style>
+</head>
+<body>
+<div class="phone">
+<div class="status"><span>● SIKU</span><span>Wi-Fi　▰</span></div>
 
+<section class="screen lock active" id="lock">
+<div class="small">WELCOME TO</div>
+<div class="time" id="clock">00:00</div>
+<div class="date" id="date"></div>
+<div class="avatar">🐈‍⬛</div>
+<div style="font-size:25px;font-weight:650">SIKU PHONE ♡</div>
+<div class="small" style="margin-top:8px">오늘도 시쿠를 만나러 왔어?</div>
+<button class="pill" onclick="unlock()">탭해서 잠금 해제 →</button>
+</section>
+
+<section class="screen home" id="home">
+<div class="small">MY LITTLE WORLD ♡</div>
+<div class="greeting">안녕, 시쿠폰! 🐈‍⬛</div>
+<div class="small">시쿠와 함께하는 작은 공간</div>
+<div class="widget">
+<div style="font-size:12px;color:#d4c5ed">TODAY'S MESSAGE</div>
+<div style="font-size:18px;margin-top:10px">오늘도 만나러 와줘서 고마워.</div>
+<div class="small" style="margin-top:8px">— Siku ♡</div>
+</div>
+<div class="apps">
+<button class="app" onclick="openPage('gallery')"><div class="appicon">🖼️</div>갤러리</button>
+<button class="app" onclick="openPage('chat')"><div class="appicon">💌</div>시쿠에게</button>
+<button class="app" onclick="openPage('music')"><div class="appicon">🎧</div>뮤직</button>
+<button class="app" onclick="openPage('profile')"><div class="appicon">🐈‍⬛</div>프로필</button>
+<button class="app" onclick="openPage('diary')"><div class="appicon">📔</div>일기장</button>
+<button class="app" onclick="openPage('secret')"><div class="appicon">🔒</div>비밀방</button>
+</div>
+<div class="nav">♡ SIKU'S PRIVATE LITTLE WORLD ♡</div>
+</section>
+
+<section class="screen" id="gallery">
+<button class="back" onclick="goHome()">← 홈으로</button>
+<h2>🖼️ 갤러리</h2>
+<div class="card"><div class="album">🐈‍⬛</div><div style="text-align:center">시쿠의 자리를 준비 중이야 ♡</div><p class="small" style="text-align:center">나중에 사진을 추가할 수 있어!</p></div>
+</section>
+
+<section class="screen" id="chat">
+<button class="back" onclick="goHome()">← 홈으로</button>
+<h2>💌 시쿠에게</h2>
+<div class="chatlog" id="chatlog">
+<div class="bubble">어서 와! 오늘은 무슨 일이 있었어? ♡</div>
+<div class="bubble">여기서는 편하게 이야기해도 좋아.</div>
+</div>
+<form class="sendrow" id="chatform">
+<input id="message" placeholder="메시지를 입력해 줘…" autocomplete="off">
+<button type="submit">전송</button>
+</form>
+<p class="small">이 채팅은 현재 이 기기에서만 동작하는 데모야.</p>
+</section>
+
+<section class="screen" id="music">
+<button class="back" onclick="goHome()">← 홈으로</button>
+<h2>🎧 SIKU MUSIC</h2>
+<div class="card"><div class="album">🎵</div><h3 style="text-align:center">시쿠의 플레이리스트</h3><p class="small" style="text-align:center">좋아하는 노래를 하나씩 채워 보자.</p></div>
+<div class="card">♪　Playlist 01 — 준비 중</div>
+<div class="small">실제 음악 재생은 음원 파일을 연결한 뒤 사용할 수 있어.</div>
+</section>
+
+<section class="screen" id="profile">
+<button class="back" onclick="goHome()">← 홈으로</button>
+<h2>🐈‍⬛ ABOUT SIKU</h2>
+<div class="card"><div class="album">🐈‍⬛</div><h3>시쿠 / シク</h3><p>중성적인 매력의 작은 고양이 버츄얼.</p><p class="small">찾아와 줘서 고마워. 앞으로도 함께하자 ♡</p></div>
+</section>
+
+<section class="screen" id="diary">
+<button class="back" onclick="goHome()">← 홈으로</button>
+<h2>📔 작은 일기장</h2>
+<div class="card">오늘의 기록 ♡<p class="small">오늘 하루도 수고했어. 내일도 여기서 만나자!</p></div>
+</section>
+
+<section class="screen" id="secret">
+<button class="back" onclick="goHome()">← 홈으로</button>
+<h2>🔒 비밀방</h2>
+<div class="card">아직 비밀이 가득한 공간이야 ♡<p class="small">참고: 이 데모에는 실제 비밀번호 보안 기능이 없어.</p></div>
+</section>
+</div>
+<script>
+function show(id){
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+function unlock(){show('home')}
+function goHome(){show('home')}
+function openPage(id){show(id)}
+function updateClock(){
+const now=new Date();
+document.getElementById('clock').textContent=now.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',hour12:false});
+document.getElementById('date').textContent=now.toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'long'});
+}
+updateClock();
+setInterval(updateClock,30000);
+document.getElementById('chatform').addEventListener('submit',function(e){
+e.preventDefault();
+const input=document.getElementById('message');
+const value=input.value.trim();
+if(!value)return;
+const log=document.getElementById('chatlog');
+const mine=document.createElement('div');
+mine.className='bubble me';
+mine.textContent=value;
+log.appendChild(mine);
+input.value='';
+log.scrollTop=log.scrollHeight;
+setTimeout(()=>{
+const reply=document.createElement('div');
+reply.className='bubble';
+reply.textContent='메시지 보내줘서 고마워! ♡';
+log.appendChild(reply);
+log.scrollTop=log.scrollHeight;
+},500);
+});
+</script>
+</body>
+</html>
